@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <script type="text/javascript">
+            
+            
+            window.addEventListener("load", function(event) {
+                var buton = document.getElementById('baslat');
+
+                buton.addEventListener('click', function(event){
+                    alert('Sayaç değeri: ' + document.getElementById('sayac').value);
+                });
+
+                console.log("All resources finished loading!");
+            });
+
+            
+
+        </script>
+    </head>
+    <body>
+        <div>
+            <input type="text" name="sayac" value="1212" id="sayac" />
+        </div>
+
+        <div>
+            <button type="button" name="baslat" value="baslat" id="baslat">Başlat</button>
+        </div>
+
+    </body>
+</html>
