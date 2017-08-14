@@ -1,5 +1,9 @@
 var timeoutID;
 
+function sayiMi(deger){
+    var regexp = /^[0-9]+$/g;    
+    return regexp.test(deger); 
+}
 
 function zamanAsimiDegeriGoster(){
     return timeoutID;
@@ -23,20 +27,17 @@ function geriSaydir(sayacEl, sayacDegeri) {
         if (sayacDegeri > 0) {
             geriSaydir(sayacEl, sayacDegeri - 1);
         }
-
+        if(sayacDegeri == 0){
+            timeoutID = null;
+        }
     }, 1000);
-
-    console.log('Mevcut:' + timeoutID);
-
 }
 
 function durdur() {
-    console.log('Durdur:' + timeoutID);
     window.clearTimeout(timeoutID);
 }
 
 function sifirla(sayacEl) {
-    console.log('Sifirla:' + timeoutID);
     window.clearTimeout(timeoutID);
     sayacEl.innerHTML = "";
     timeoutID = null;
@@ -46,3 +47,4 @@ exports.sifirla = sifirla;
 exports.durdur = durdur;
 exports.geriSaydir = geriSaydir;
 exports.zamanAsimiDegeriGoster = zamanAsimiDegeriGoster;
+exports.sayiMi = sayiMi;

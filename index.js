@@ -17,9 +17,14 @@ window.addEventListener("load", function (event) {
     // metodu yaziyoruz
     butonEl.addEventListener('click', function (event) {
 
-        var sayacDegeri = Number(sayacBaslangiciEl.value);
+        var sayacDegeri = sayacBaslangiciEl.value;
         if (typeof araclar.zamanAsimiDegeriGoster() !== 'undefined' && araclar.zamanAsimiDegeriGoster() !== null) {
-            sayacDegeri = Number(sayacEl.innerHTML);
+            sayacDegeri = sayacEl.innerHTML;
+        }
+
+        if(!araclar.sayiMi(sayacDegeri)){   
+            alert('Lütfen geçerli bir sayı giriniz');
+            return false;
         }
 
         // sayac değerine başlangıç değerini ata
