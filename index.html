@@ -1,30 +1,96 @@
 <html>
-    <head>
-        <script type="text/javascript">
-            
-            
-            window.addEventListener("load", function(event) {
-                var buton = document.getElementById('baslat');
 
-                buton.addEventListener('click', function(event){
-                    alert('Sayaç değeri: ' + document.getElementById('sayac').value);
-                });
+<head>
+    <script type="text/javascript">
+        
+        var zamanAsimiNosu;
 
-                console.log("All resources finished loading!");
+        /**
+        * Parametre olarak verilen sayaç değerini yine parametre olarak
+        * verilen HTML elemanina yazar. Her saniye kendi çağrıp 
+        * değeri azaltır
+        * 
+        * @param {HTMLElement} sayacEl - Değerin yazılacağı eleman
+        * @param {Number }sayacDegeri - Sayacin o anki değeri
+        * 
+        * @returns
+        */
+        function geriSaydir(sayacEl, sayacDegeri) {
+            // sayac degerini her saniye azalt ve göster
+            sayacEl.innerHTML = sayacDegeri;
+
+            zamanAsimiNosu = window.setTimeout(function () {
+                if (sayacDegeri > 0) {
+                    geriSaydir(sayacEl, sayacDegeri - 1);
+                }
+
+            }, 1000);
+        }
+
+        function durdur(timeoutID){
+            window.clearTimeout(timeoutID);
+        }
+
+        function sifirla(sayacEl, timeoutID){
+            window.clearTimeout(timeoutID);
+            sayacEl.innerHTML = "";
+            zamanAsimiNosu = null;
+        }
+
+
+
+        window.addEventListener("load", function (event) {
+
+            // sayfadaki buton elemanini aliyoruz
+            var butonEl = document.getElementById('baslat');
+            var durdurEl = document.getElementById('durdur');
+            var sifirlaEl = document.getElementById('sifirla');
+
+            var sayacBaslangiciEl = document.getElementById('sayac_baslangici');
+            var sayacEl = document.getElementById('sayac');
+
+            // buton elemanininin 'tiklanma/click' olayini dinleyecek
+            // metodu yaziyoruz
+            butonEl.addEventListener('click', function (event) { 
+
+                var sayacDegeri = Number(sayacBaslangiciEl.value);
+                if(typeof zamanAsimiNosu !== 'undefined' && zamanAsimiNosu !== null){
+                    sayacDegeri = Number(sayacEl.innerHTML);
+                }
+
+                // sayac değerine başlangıç değerini ata
+                geriSaydir(sayacEl,sayacDegeri);
+
             });
 
-            
 
-        </script>
-    </head>
-    <body>
-        <div>
-            <input type="text" name="sayac" value="1212" id="sayac" />
-        </div>
+            durdurEl.addEventListener('click', function (event) {
+                durdur(zamanAsimiNosu);
+            });
 
-        <div>
-            <button type="button" name="baslat" value="baslat" id="baslat">Başlat</button>
-        </div>
+            sifirlaEl.addEventListener('click', function (event) {
+                sifirla(sayacEl, zamanAsimiNosu);
+            });
 
-    </body>
+        });
+    </script>
+</head>
+
+<body>
+    <div>
+        <input type="text" name="sayac_baslangici" id="sayac_baslangici" />
+    </div>
+
+    <div>
+        <button type="button" name="baslat" value="baslat" id="baslat">Başlat</button>
+        <button type="button" name="durdur" value="durdur" id="durdur">Durdur</button>
+        <button type="button" name="sifirla" value="sifirla" id="sifirla">Sıfırla</button>
+    </div>
+
+    <div>
+        <span id="sayac"></span>
+    </div>
+
+</body>
+
 </html>
