@@ -1,0 +1,27 @@
+{
+  "name": "kronometre",
+  "version": "0.0.1",
+  "description": "Bu hem bir kronometre hem de bir sayaç olacak",
+  "main": "index.js",
+  "dependencies": {
+    "browserify": "^14.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crashberk/kronometre.git"
+  },
+  "keywords": [
+    "kronomtre",
+    "sayac"
+  ],
+  "author": "Yağız Berk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/crashberk/kronometre/issues"
+  },
+  "homepage": "https://github.com/crashberk/kronometre#readme"
+}
